@@ -1,1 +1,4 @@
 war/WEB-INF/groovy/AuthTokens.groovy
+build$
+war/WEB-INF/classes
+war/WEB-INF/appengine-generated/
