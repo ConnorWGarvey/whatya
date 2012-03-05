@@ -1,4 +1,7 @@
+.gradle
+.settings
 war/WEB-INF/groovy/AuthTokens.groovy
-build$
+build
 war/WEB-INF/classes
+war/WEB-INF/lib/appengine-api-*.jar
 war/WEB-INF/appengine-generated/
