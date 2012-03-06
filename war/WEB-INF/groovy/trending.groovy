@@ -7,9 +7,7 @@ import org.scribe.oauth.OAuthService
 
 def findTerms() {
   def terms = []
-  terms[0] = params['search0'] ?: params['searchThis']
-  terms[1] = params['search1'] ?: params['searchThat']
-  for (int i = 2; i < 20; ++i) {
+  for (i in 0..20) {
     def term = params["search${i}"]
     if (term == null) {
       break
