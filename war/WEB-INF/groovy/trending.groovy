@@ -17,11 +17,13 @@ def findTerms() {
   return terms
 }
 
-def accessToken = new Auth().findAccessToken(request, response)
+def auth = new Auth()
+def accessToken = auth.findAccessToken(request, response)
 if (accessToken == null) {
   forward 'redirect.gtpl'
 }
 def terms = findTerms()
 def search = new Search()
 request['counts'] = terms.collect { [it, search.count(it, accessToken)] }
+search.save(terms, auth.getIDFromCookie(request))
 forward 'trending.gtpl'
