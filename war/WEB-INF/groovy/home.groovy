@@ -1,5 +1,5 @@
 if (!new Auth().authorized(request, response)) {
-  forward 'redirect.gtpl'
+  forward 'WEB-INF/pages/redirect.gtpl'
 }
 
 def searches = new Searches()
