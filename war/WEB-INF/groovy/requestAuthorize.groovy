@@ -24,5 +24,5 @@ def cookie = new Cookie('authorizationID', authorizationID)
 cookie.setPath('/')
 cookie.setMaxAge(365 * 24 * 60 * 60)
 response.addCookie(cookie)
-forward 'authorize.gtpl'
+forward 'WEB-INF/pages/authorize.gtpl'
 

@@ -23,7 +23,7 @@ if (accessToken == null) {
   forward 'redirect.gtpl'
 }
 def terms = findTerms()
-def search = new Search()
-request['counts'] = terms.collect { [it, search.count(it, accessToken)] }
-search.save(terms, auth.getIDFromCookie(request))
-forward 'trending.gtpl'
+def searches = new Searches()
+request['counts'] = terms.collect { [it, searches.count(it, accessToken)] }
+searches.save(terms, auth.getIDFromCookie(request))
+forward 'WEB-INF/pages/trending.gtpl'
