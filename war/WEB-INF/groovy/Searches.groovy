@@ -26,16 +26,21 @@ import org.scribe.oauth.OAuthService
   List<Entity> find() {
     datastore.execute {
       from 'Search'
+      sort desc by lastRun
     }
   }
   
   void save(List<String> terms, String authorizationID) {
     datastore.withTransaction {
       try {
-        datastore.get('Search', termsKey)
+        String id = new Search(terms:terms).getId()
+        datastore.get('Search', id).with {
+          it.count = it.count + 1
+          it.lastRun = new Date()
+          it.save()
+        }
       }
       catch (EntityNotFoundException) {
-        String termsKey = terms.join('|')
         Search search = new Search(terms:terms, authorizationID:authorizationID)
         def entity = search as Entity
         entity.save()

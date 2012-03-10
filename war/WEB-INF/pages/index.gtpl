@@ -12,7 +12,7 @@
 <% def searches = request.searches
    if (!searches.isEmpty()) {
      searches.each { %>
-  <a href="<%=it.url%>"><%=it.terms.join(' or ')%></a><br />
+  <a href="<%=it.url%>"><%=it.terms.terms.join(' or ')%></a><br />
 <%   }
    }
    else { print 'No ideas yet...' } %>

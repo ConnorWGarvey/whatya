@@ -3,5 +3,7 @@ if (!new Auth().authorized(request, response)) {
 }
 
 def searches = new Searches()
-request['searches'] = searches.find().collect { [terms:it.terms, url:searches.makeURL(it.terms)] }
+def pastSearches = searches.find()
+if (!pastSearches.isEmpty()) pastSearches = pastSearches[0..Math.min(pastSearches.size() - 1, 9)]
+request['searches'] = pastSearches.collect { [terms:it, url:searches.makeURL(it.terms)] }
 forward 'WEB-INF/pages/index.gtpl'
